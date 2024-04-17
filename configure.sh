@@ -1,12 +1,12 @@
 echo "
   <VirtualHost *:80>
-      ServerName 3.27.48.124
-      Redirect / https://3.27.48.124
+      ServerName 13.211.147.121
+      Redirect / https://13.211.147.121
   </VirtualHost> 
       
   <VirtualHost  *:443>
       
-      ServerName 3.27.48.124
+      ServerName 13.211.147.121
       SSLEngine on
       SSLProxyEngine On
       SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
@@ -20,11 +20,11 @@ echo "
           Allow from all
       </Proxy>
       
-      ProxyPass         /_stcore        ws://localhost:8501/_stcore
-      ProxyPassReverse  /_stcore        ws://localhost:8501/_stcore
+      ProxyPass         /_stcore        ws://localhost:5000/_stcore
+      ProxyPassReverse  /_stcore        ws://localhost:5000/_stcore
       
       # The order is important here
-      ProxyPass         /        http://localhost:8501/
-      ProxyPassReverse  /        http://localhost:8501/
+      ProxyPass         /        http://localhost:5000/
+      ProxyPassReverse  /        http://localhost:5000/
       
   </VirtualHost>>" > /etc/apache2/sites-available/deploy_healthcare_app.conf
