@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="background"></div>
+<div class="title">
+    <h1> <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+        Sris Health Care</h1>
+</div>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/form1">Spiral Image Prediction</a></li>      
+            <li><a href="/form2">Wave Image Prediction</a></li>  
+            <li><a href="/view">View Patient Details</a></li>
+        </ul>
+    </nav>
+</header>
+    
+<h1 class="session">
+    Hi {{ session.username }}!!
+</h1>
+</br></br>
+<div id="formContainer" >
+    <div id = "result"> 
+    <h1> Parkinson Disease Prediction</h1> 
+    
+        {% if prediction %}
+        <p><h2>Prediction Result:</h2><h1 style="background-color: yellow;"> {{ prediction }}</h1></p>
+        {% elif error %}
+        <p>{{ error }}</p>
+        {% endif %}    
+    </div>
+</div>
+
+<div class="logout">
+    <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const formContainer = document.getElementById('formContainer');
+        const refreshButton = document.getElementById('refreshButton');
+
+        // Function to reset the form and clear formContainer
+        function resetFormContainer() {
+            formContainer.innerHTML = ''; // Clear formContainer
+        }
+
+        refreshButton.addEventListener('click', () => {
+            // Find the form within the formContainer
+            const form = formContainer.querySelector('form');
+
+            // Reset the form fields
+            form.reset();
+        });
+    });
+    // Get references to menu items
+    const menuItems = document.querySelectorAll('nav ul li');
+    
+    // Iterate over menu items and add click event listener
+    menuItems.forEach(item => {
+    item.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        // Get the href attribute of the clicked menu item
+        const href = this.querySelector('a').getAttribute('href');
+
+        if (href === '/home') {
+                    // Reload the current page (index page)
+                    window.location.href = '/index'; 
+                    return;
+                }
+
+        // Fetch the form content from the server
+        fetch(href)
+            .then(response => response.text()) // Get the response as text
+            .then(html => {
+                // Inject the form content into the formContainer
+                document.getElementById('formContainer').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching form:', error));
+        });
+    });
+    
+    </script>
+
+</body>
+</html>

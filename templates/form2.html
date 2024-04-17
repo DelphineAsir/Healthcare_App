@@ -1,0 +1,54 @@
+<html>
+<body>
+    <h2 style="text-align: center;">WAVE IMAGE PREDICTION</h2>
+<form id="predictionForm2" action="/predict2" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <br>              
+        <label for="wave_image">Upload Wave Image:</label>
+        <input type="file" id="wave_image" name="wave_image" accept="image/*" required>
+       
+        <br> 
+        <button type="submit" id="predictButton2" style="margin-top: 10px">Predict</button>
+        <br>
+        <button type="button" id="refreshButton2">Refresh</button>
+        
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('predictionForm2');
+        const refreshButton = document.getElementById('refreshButton2');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            fetch('/predict2', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            
+            .catch(error => console.error('Error:', error));
+        });
+        refreshButton.addEventListener('click', function () {
+			// Clear the prediction result
+			resultParagraph.textContent = '';
+			// Optionally, reset form fields if needed
+			form.reset();
+		});
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<body>
+    <h2 style="text-align: center;">SPIRAL IMAGE PREDICTION</h2>
+<form id="predictionForm" action="/predict" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <br>
+        <div class="sub-container">
+            
+        </div>
+        <label for="spiral_image">Upload Spiral Image:</label>
+        <input type="file" id="spiral_image" name="spiral_image" accept="image/*" required>
+        <br> 
+        <button type="submit" id="predictButton" style="margin-top: 10px">Predict</button>
+        <br>
+        <button type="button" id="refreshButton">Refresh</button>
+        
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const formContainer = document.getElementById('formContainer');
+        const refreshButton = document.getElementById('refreshButton');
+
+        refreshButton.addEventListener('click', () => {
+            // Find the form within the formContainer
+            const form = formContainer.querySelector('form');
+
+            // Reset the form fields
+            form.reset();
+        });
+    });
+</script>
+
+</body>
+</html>

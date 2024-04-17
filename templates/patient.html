@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Details</title>
+</head>
+<body>
+    <div id="formContainer" >
+        <div id = "result">
+
+    <h1>Patient Details</h1>
+    <table id ="table" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patient_details %}
+            <tr>
+                <td>{{ patient.pid }}</td>
+                <td>{{ patient.pname }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.gender }}</td>
+                <td>{{ patient.pdate }}</td>
+                <td>{{ patient.pstatus }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div></div>
+</body>
+</html>
