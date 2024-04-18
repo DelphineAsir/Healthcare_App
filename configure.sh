@@ -1,12 +1,12 @@
 echo "
   <VirtualHost *:80>
-      ServerName 13.211.147.121
-      Redirect / https://13.211.147.121
+      ServerName 13.236.44.123
+      Redirect / https://13.236.44.123
   </VirtualHost> 
       
   <VirtualHost  *:443>
       
-      ServerName 13.211.147.121
+      ServerName 13.236.44.123
       SSLEngine on
       SSLProxyEngine On
       SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
