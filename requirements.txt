@@ -1,7 +1,9 @@
 python3-flask
-opencv-python-headless
+mysqlclient
+flask-mysqldb
+Werkzeug
+tensorflow-cpu==2.12.0
 numpy
 pandas
 scikit-learn
-flask-mysqldb
-tensorflow --no-cache-dir
+Pillow
